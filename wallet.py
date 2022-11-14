@@ -180,3 +180,16 @@ class Wallet:
                 raise WalletError('No wallet open.')
         except (WalletError, Exception) as error:
             return str(error)
+
+    # Send bitcoins
+    def send(self, receiver, amount, fee=None, min_confirms=1):
+        try:
+            if (self.wallet):
+                self.update()
+                if (amount > self.balance()): raise WalletError('Not enough funds.')
+                self.wallet.send_to(receiver, amount, fee=fee, min_confirms=min_confirms, offline=False)
+                return True
+            else:
+                raise WalletError('No wallet open.')
+        except (WalletError, Exception) as error:
+            return str(error)

@@ -79,6 +79,22 @@ if w.open():
     w.update() # returns last update timestamp
 ```
 
+### Send bitcoins
+```python
+from wallet import Wallet
+
+w = Wallet('testwallet')
+if w.open():
+    w.send('1zM3QU1dwsk7dekWWnDJjiZqExrqawTri', 200000) # Amount in satoshi
+    w.update()
+
+"""
+Optional parameters with default values:
+   fee=None (Set fee manually, leave empty to calculate fees automatically)
+   min_confirms=1 (Minimal confirmation needed for an transaction before it will be included in inputs)
+"""
+```
+
 ### Open and use wallet
 ```python
 from wallet import Wallet
